@@ -1,0 +1,348 @@
+/* Imports the 'Kaushan Script' font. */
+@import url("https://fonts.googleapis.com/css2?family=Kaushan+Script&display=swap");
+
+/* Applies the gradient background to the entire body of the HTML document. */
+body {
+    background: linear-gradient(-45deg, #ffffff, #d2d2d2);
+    background-size: 400% 400%; /* Sets the size of the background gradient */
+    animation: gradient 10s ease infinite; /* Initiates the animation called 'gradient' with a duration of 10 seconds, using an easing function, and repeating infinitely. */
+}
+
+/* Defines the keyframes for the animation called 'gradient'.
+   It changes the background position to create the shifting effect. */
+@keyframes gradient {
+    0% {
+        background-position: 0% 50%; /* Initial position of the background */
+    }
+    50% {
+        background-position: 100% 50%; /* Middle position of the background */
+    }
+    100% {
+        background-position: 0% 50%; /* Final position of the background, same as the initial position */
+    }
+}
+
+/* Resetting default margin and padding */
+body,
+h1,
+h2,
+h3,
+p,
+ul,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+h1 {
+    color: #333;
+    font-family: "Kaushan Script";
+    text-align: center;
+    padding: 30px;
+}
+
+h2 {
+    color: #666;
+    text-align: center;
+}
+
+h3 {
+    color: #333;
+}
+a {
+    color: inherit; /* Use the color inherited from the parent element */
+    text-decoration: none; /* Optionally remove underline */
+}
+ul {
+    list-style-type: none;
+}
+
+nav {
+    background-color: #333;
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+    padding: 10px;
+    display: flex;
+    justify-content: flex-end; /* Align items to the right */
+    box-shadow: 0px 8px 20px 0px #0000004d;
+}
+
+nav ul li {
+    display: inline;
+    padding: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+}
+
+nav ul li a:hover {
+    color: royalblue;
+    transition: 0.3s;
+}
+
+header {
+    background-color: #f2f2f2;
+    padding: 50px 0;
+    width: 100%;
+    height: 100%;
+    flex-wrap: wrap;
+    font-size: 25pt;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+header div {
+    width: 45%;
+}
+
+.header--image-container {
+    height: 400px;
+    width: 400px;
+    box-shadow: 8px 8px 20px 0px #0000004d;
+    overflow: hidden;
+    border-radius: 20em 15em 10em 26em / 10em 15em 20em 26em;
+}
+
+.header--image-container img {
+    max-width: 100%;
+    height: auto;
+}
+
+.header--image-container :hover {
+    transform: scale(1.3);
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.header--image-container :not(:hover) {
+    transition: 0.3s;
+}
+
+/* main */
+
+/* main intro*/
+
+#intro {
+    animation-name: intro;
+    animation-duration: 5s;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-direction: alternate;
+}
+
+@keyframes intro {
+    0% {
+        opacity: 0;
+    }
+    75% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.main--intro {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+/* main intro about */
+.main--intro-about {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: justify;
+    flex-direction: column;
+}
+
+.main--intro p {
+    font-size: 20pt;
+    font-family: Verdana;
+    padding: 40px;
+}
+
+.main--intro,
+.main--projects,
+.main--contact {
+    padding-bottom: 100px;
+}
+
+/* main intro skills */
+
+.main--intro-skills {
+}
+
+.main--intro-skills div {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+    align-items: center;
+    justify-content: center;
+}
+
+.main--intro-skills-skill {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Kaushan Script";
+}
+
+.main--intro-skills-skill-icon:hover {
+    cursor: pointer;
+    transform: scale(1.1);
+    transition: 0.3s;
+}
+
+.main--intro-skills-skill-icon:not(:hover) {
+    transition: 0.3s;
+}
+
+/* main projects*/
+.main--projects {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #f2f2f2;
+    flex-wrap: wrap;
+}
+
+#projects {
+    background-color: #f2f2f2;
+}
+
+.main--projects-project-iframe-container {
+    position: relative;
+    box-shadow: 8px 8px 20px 0px #0000004d;
+    width: 500px;
+    height: 300px;
+    overflow: hidden;
+    margin: 20px;
+}
+
+.main--projects-project-iframe-container:hover .iframe-overlay {
+    background-color: rgba(0, 0, 0, 0.6);
+    cursor: pointer;
+}
+
+.iframe-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0);
+    transition: background-color 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.see-more-button {
+    background-color: rgba(0, 0, 0, 0.8);
+    padding: 10px 20px;
+    color: #fff;
+    border: 1px solid #fff;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* main contact*/
+
+.main--contact {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main--contact-icons {
+    font-size: 50pt;
+    padding: 30px;
+    color: black;
+    display: flex;
+}
+
+.main--contact-icons :hover {
+    color: royalblue;
+    transition: 0.3s;
+}
+
+.main--contact-icons-icon {
+    color: black;
+    padding: 30px;
+}
+
+.footer {
+    display: flex;
+    width: 100%;
+    height: 200px;
+    background-color: #333;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+@media screen and (min-width: 991px) {
+    .main--intro-about {
+        width: 35%;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    /* start of medium tablet styles */
+
+    nav {
+        justify-content: center;
+    }
+    nav ul li {
+        padding: 5px;
+    }
+    .header--title,
+    .header--image-container {
+        transform: scale(0.75);
+    }
+    #header {
+        flex-direction: column; /* Stack elements vertically */
+        align-items: center; /* Center align all items */
+    }
+
+    .header--image-container {
+        margin-top: 20px; /* Add margin to separate from the title */
+    }
+
+    .header--image-container img {
+        display: block;
+        margin: auto;
+        max-width: 100%;
+        height: auto;
+    }
+    .main--projects-project-iframe-container {
+        width: 400px;
+        height: 250px;
+    }
+    .main--projects-project-iframe-container iframe {
+        width: 400px;
+        height: 250px;
+    }
+}
+
+@media screen and (max-width: 479px) {
+    /* start of phone styles */
+    .main--contact-icons {
+        font-size: 20pt;
+        padding: 5px;
+    }
+}
