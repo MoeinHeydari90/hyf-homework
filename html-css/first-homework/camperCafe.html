@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Cafe Menu</title>
+
+        <style>
+            html,
+            body {
+                margin: 0;
+            }
+
+            body {
+                background-image: url(https://cdn.freecodecamp.org/curriculum/css-cafe/beans.jpg);
+                font-family: sans-serif;
+                margin: 0px;
+            }
+
+            h1 {
+                font-size: 40px;
+                margin-top: 0;
+                margin-bottom: 15px;
+            }
+
+            h2 {
+                font-size: 30px;
+            }
+
+            .established {
+                font-style: italic;
+            }
+
+            h1,
+            h2,
+            p {
+                text-align: center;
+            }
+
+            .menu {
+                width: 80%;
+                background-color: rgba(222, 184, 135, 0.75);
+                margin-left: auto;
+                margin-right: auto;
+                padding: 20px;
+                max-width: 500px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+            }
+
+            img {
+                display: block;
+                margin-left: auto;
+                margin-right: auto;
+                margin-top: -25px;
+            }
+
+            hr {
+                height: 2px;
+                background-color: brown;
+                border-color: brown;
+            }
+
+            .bottom-line {
+                margin-top: 25px;
+            }
+
+            h1,
+            h2 {
+                font-family: Impact, serif;
+            }
+            li:first-child {
+                padding-bottom: 20px;
+            }
+            /* HEADER */
+
+            nav {
+                width: 100%;
+                height: 100px;
+                background-color: peru;
+                margin-bottom: 50px;
+                display: flex;
+                justify-content: space-between;
+            }
+            .navigation-bar {
+                width: 33%;
+                padding-top: 30px;
+                text-align: center;
+                font-family: "Trebuchet MS";
+                text-transform: uppercase;
+                font-size: 22pt;
+                cursor: pointer;
+            }
+            #languageSwitcher {
+                padding: 5px 40px;
+                font-size: 22px;
+                cursor: pointer;
+                border-radius: 5px;
+                font-family: "Trebuchet MS";
+                background-color: peru;
+                outline: none;
+            }
+            #languageSwitcher:hover {
+                background-color: rgba(
+                    165,
+                    42,
+                    42,
+                    0.3
+                ); /* Hover background color */
+                box-shadow: inset 2px 2px 2px 2px rgba(255, 255, 255, 0.25),
+                    7px 7px 20px 0px rgba(0, 0, 0, 0.1),
+                    0px 4px 5px 4px rgba(0, 0, 0, 0.1);
+            }
+
+            /* FOOTER */
+
+            footer {
+                font-size: 14px;
+                width: 100%;
+                background-color: peru;
+                height: 100%;
+                display: flex;
+                margin-top: 50px;
+                justify-content: space-around;
+            }
+
+            .address {
+                margin-bottom: 5px;
+            }
+
+            a {
+                color: black;
+            }
+
+            a:visited {
+                color: black;
+            }
+
+            a:hover {
+                color: brown;
+            }
+
+            a:active {
+                color: brown;
+            }
+
+            .item {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                width: 100%;
+                margin-bottom: 15px;
+            }
+
+            .flavor,
+            .dessert {
+                text-align: left;
+                margin: 0;
+                font-family: fantasy;
+                font-size: 20pt;
+            }
+
+            .price {
+                text-align: right;
+                margin: 0;
+                font-family: fantasy;
+                font-size: 20pt;
+            }
+
+            .footer-section {
+                flex: 1; /* it makes each section take up an equal amount of available space in the flex container.*/
+                margin: 10px;
+                text-align: center;
+                font-family: "Trebuchet MS";
+                cursor: pointer;
+            }
+
+            /* Styles for a hovered unordered list (ul) that is a direct child of an element with class .footer-section */
+            .footer-section > ul :hover {
+                text-decoration: underline;
+                text-shadow: 1px 1px rgb(90, 60, 19);
+                font-size: 21pt;
+            }
+            li {
+                list-style-type: none;
+                font-size: 20pt;
+            }
+            main {
+                width: 100%;
+            }
+
+            /* to make a dark background when the modal is open*/
+            .modal:before {
+                content: "";
+                display: none;
+                background: rgba(0, 0, 0, 0.6);
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+            }
+
+            .modal:target:before {
+                display: block;
+            }
+
+            .modal__text {
+                background: #fefefe;
+                border: #333 solid 1px;
+                border-radius: 10px;
+                position: fixed;
+                top: -100%;
+                z-index: 1;
+                width: 500px;
+                transform: translate(0, -100%);
+                transition: transform 0.3s ease-out;
+            }
+
+            .modal:target .modal__text {
+                transform: translate(0, 0);
+                top: 20%;
+            }
+
+            .modal__body {
+                padding: 10px 20px;
+                font-family: "Trebuchet MS";
+            }
+
+            .btn {
+                text-decoration: none;
+                transition: color 0.1s ease;
+            }
+
+            .btn--close {
+                color: #aaa;
+                font-size: 30px;
+                text-decoration: none;
+                position: absolute;
+                right: 5px;
+                top: 0;
+            }
+
+            /* Media query for screens with a maximum width of 576px (for example, mobile screens) */
+            @media screen and (max-width: 576px) {
+                footer {
+                    flex-direction: column;
+                }
+
+                .footer-section {
+                    flex: none; /* Reset the flex property to stack them vertically */
+                    margin: 10px 0; /* Adjust margin for better spacing */
+                }
+                .modal__text {
+                    width: 80%;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <header class="c-site-header">
+            <nav aria-label="Main Site Links">
+                <div class="navigation-bar">menu</div>
+                <div class="navigation-bar">
+                    <img
+                        src="https://icons.iconarchive.com/icons/sullyridout/wake-up/128/Coffee-icon.png"
+                        width="60"
+                        height="60"
+                        alt="logo"
+                    />
+                </div>
+                <div class="navigation-bar" title="Select Language">
+                    <button id="languageSwitcher">DK</button>
+                </div>
+            </nav>
+        </header>
+        <div class="menu">
+            <main>
+                <h1><a href="#modal-one" class="btn">CAMPER CAFE</a></h1>
+                <div class="modal" id="modal-one">
+                    <div class="modal__text">
+                        <a href="#close" class="btn--close">×</a>
+                        <div class="modal__body">
+                            <p>
+                                Discover a haven of flavor and warmth at Camper
+                                Café, where each sip of coffee and bite of
+                                dessert tells a unique story. Nestled in the
+                                heart of Copenhagen, our cozy retreat is a
+                                sanctuary for coffee aficionados and dessert
+                                enthusiasts alike. With a commitment to quality
+                                and sustainability, we meticulously source the
+                                finest beans and ingredients to create exquisite
+                                beverages and delectable treats. From rich
+                                espressos to decadent desserts, every moment at
+                                Camper Café is a delightful adventure for your
+                                senses. Join us for a cozy escape and experience
+                                the magic of coffee and desserts like never
+                                before.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <p class="established">Est. 2020</p>
+                <hr />
+                <section>
+                    <h2>Coffee</h2>
+                    <img
+                        src="https://icons.iconarchive.com/icons/iconarchive/fat-sugar-food/72/Drink-Coffee-icon.png"
+                        width="72"
+                        height="72"
+                        alt="coffee icon"
+                    />
+                    <article class="item">
+                        <p class="flavor">French Vanilla</p>
+                        <p class="price">3.00</p>
+                    </article>
+                    <article class="item">
+                        <p class="flavor">Caramel Macchiato</p>
+                        <p class="price">3.75</p>
+                    </article>
+                    <article class="item">
+                        <p class="flavor">Pumpkin Spice</p>
+                        <p class="price">3.50</p>
+                    </article>
+                    <article class="item">
+                        <p class="flavor">Hazelnut</p>
+                        <p class="price">4.00</p>
+                    </article>
+                    <article class="item">
+                        <p class="flavor">Mocha</p>
+                        <p class="price">4.50</p>
+                    </article>
+                </section>
+                <section>
+                    <h2>Desserts</h2>
+                    <img
+                        src="https://icons.iconarchive.com/icons/lemon-liu/recipes/96/recipe-dessert-cake-icon.png"
+                        width="96"
+                        height="96"
+                        alt="pie icon"
+                    />
+                    <article class="item">
+                        <p class="dessert">Donut</p>
+                        <p class="price">1.50</p>
+                    </article>
+                    <article class="item">
+                        <p class="dessert">Cherry Pie</p>
+                        <p class="price">2.75</p>
+                    </article>
+                    <article class="item">
+                        <p class="dessert">Cheesecake</p>
+                        <p class="price">3.00</p>
+                    </article>
+                    <article class="item">
+                        <p class="dessert">Cinnamon Roll</p>
+                        <p class="price">2.50</p>
+                    </article>
+                </section>
+                <hr />
+            </main>
+        </div>
+
+        <footer class="c-site-footer">
+            <section class="footer-section">
+                <ul>
+                    <li><b>Product</b></li>
+                    <li>Our Coffee</li>
+                    <li>Our Desserts</li>
+                    <li>Delivery</li>
+                </ul>
+            </section>
+            <section class="footer-section">
+                <ul>
+                    <li><b>Camper Cafe</b></li>
+                    <li>About us</li>
+                    <li>Join our team!</li>
+                    <li>Contact us</li>
+                </ul>
+            </section>
+            <section class="footer-section">
+                <ul>
+                    <li><b>Legal</b></li>
+                    <li>Allergens</li>
+                    <li>Privacy Notice</li>
+                    <li>Sustainability</li>
+                    <li>Cookie policy</li>
+                </ul>
+            </section>
+            <section class="footer-section">
+                <div class="gmap_canvas">
+                    <iframe
+                        width="100"
+                        height="100"
+                        id="gmap_canvas"
+                        src="https://maps.google.com/maps?q=copenhagen&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                        style="border: 0"
+                    >
+                    </iframe>
+                </div>
+                <p class="address">123 Free Code Camp Drive</p>
+            </section>
+        </footer>
+
+        <!-- Your test console.
+    Don't delete!-->
+        <aside
+            id="tests"
+            aria-label="Test Readout."
+            aria-live="polite"
+            style="overflow: auto"
+        ></aside>
+    </body>
+</html>
