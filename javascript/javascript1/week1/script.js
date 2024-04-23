@@ -24,3 +24,38 @@ console.log(
         " years old in " +
         dogYearFuture
 );
+
+//Housey pricey (A house price estimator)
+
+// Array containing information about friends houses
+const friendsHouseInformation = [
+    {
+        name: "Peter",
+        houseWide: 8,
+        houseDeep: 10,
+        houseHigh: 10,
+        gardenSizeInM2: 100,
+        houseCost: 2500000,
+    },
+    {
+        name: "Julia",
+        houseWide: 5,
+        houseDeep: 11,
+        houseHigh: 8,
+        gardenSizeInM2: 70,
+        houseCost: 1000000,
+    },
+];
+let offer = "too much"; // Default offer set to "too much"
+
+// Loop through each friend's house information
+for (const i of friendsHouseInformation) {
+    volumeInMeters = i.houseWide * i.houseDeep * i.houseHigh;
+    housePrice = volumeInMeters * 2.5 * 1000 + i.gardenSizeInM2 * 300;
+
+    // Determine if the offer is too little based on the comparison between house price and house cost
+    if (housePrice > i.houseCost) offer = "too little";
+
+    console.log(`because the house price is ${housePrice} and ${i.name} 
+    is paying ${i.houseCost}, this offer is ${offer} for this house.`);
+}
