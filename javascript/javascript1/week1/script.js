@@ -59,3 +59,42 @@ for (const i of friendsHouseInformation) {
     console.log(`because the house price is ${housePrice} and ${i.name} 
     is paying ${i.houseCost}, this offer is ${offer} for this house.`);
 }
+
+//Ez Namey (Startup name generator) Optional
+
+// Define two arrays containing possible first and second words for startup names
+const firstWords = [
+    "Tech",
+    "Innovate",
+    "Spark",
+    "Nexus",
+    "Swift",
+    "Zenith",
+    "Quantum",
+    "Fusion",
+    "Apex",
+    "Visionary",
+];
+const secondWords = [
+    "Labs",
+    "Solutions",
+    "Ventures",
+    "Studio",
+    "Innovations",
+    "Hub",
+    "Forge",
+    "Co",
+    "Works",
+    "Dynamics",
+];
+
+// Generate a random startup name by selecting a random first word and a random second word
+const startupName =
+    firstWords[Math.floor(Math.random() * 10)] +
+    " " +
+    secondWords[Math.floor(Math.random() * 10)];
+
+// Print the generated startup name and its length to the console
+console.log(
+    `The startup: ${startupName} contains ${startupName.length} characters`
+);
