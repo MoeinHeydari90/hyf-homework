@@ -49,15 +49,15 @@ const friendsHouseInformation = [
 let offer = "too much"; // Default offer set to "too much"
 
 // Loop through each friend's house information
-for (const i of friendsHouseInformation) {
-    volumeInMeters = i.houseWide * i.houseDeep * i.houseHigh;
-    housePrice = volumeInMeters * 2.5 * 1000 + i.gardenSizeInM2 * 300;
+for (const value of friendsHouseInformation) {
+    const volumeInMeters = value.houseWide * value.houseDeep * value.houseHigh;
+    const housePrice = volumeInMeters * 2.5 * 1000 + value.gardenSizeInM2 * 300;
 
     // Determine if the offer is too little based on the comparison between house price and house cost
-    if (housePrice > i.houseCost) offer = "too little";
+    if (housePrice > value.houseCost) offer = "too little";
 
-    console.log(`because the house price is ${housePrice} and ${i.name} 
-    is paying ${i.houseCost}, this offer is ${offer} for this house.`);
+    console.log(`because the house price is ${housePrice} and ${value.name} 
+    is paying ${value.houseCost}, this offer is ${offer} for this house.`);
 }
 
 //Ez Namey (Startup name generator) Optional
