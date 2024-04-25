@@ -2,7 +2,7 @@
 const yearOfBirth = 1990;
 const yearFuture = 2030;
 const age = yearFuture - yearOfBirth;
-console.log("You will be " + age + " years old in " + yearFuture);
+console.log(`You will be ${age} years old in ${yearFuture}`);
 
 // Goodboy-Oldboy (A dog age calculator)
 const dogYearOfBirth = 2017;
@@ -17,12 +17,7 @@ if (shouldShowResultInDogYears) {
     typeOfYears = "dog";
 }
 console.log(
-    "Your dog will be " +
-        dogYear +
-        " " +
-        typeOfYears +
-        " years old in " +
-        dogYearFuture
+    `Your dog will be ${dogYear} ${typeOfYears} years old in ${dogYearFuture}`
 );
 
 //Housey pricey (A house price estimator)
