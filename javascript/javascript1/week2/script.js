@@ -40,8 +40,11 @@ function getEventWeekday(eventInDays) {
 
     return weekdays[eventDayIndex];
 }
+const getRandomNumber = () => Math.floor(Math.random() * 20) + 1; // return a random number between 1 to 20
+const randomNumber = getRandomNumber(); // The random number of days that we will have the Event
+const eventDay = getEventWeekday(randomNumber);
 
-console.log(getEventWeekday(1)); // It returns tomorrow's weekday
+console.log(`It's ${eventDay} in ${randomNumber} days`);
 
 console.log(
     "--------------------------------------------------------------------"
@@ -63,8 +66,8 @@ function suggestClothes(temperature) {
 }
 
 const getRandomTemperature = () => Math.floor(Math.random() * 51) - 10; // return a random number between -10 to +40
-
 const clothesToWear = suggestClothes(getRandomTemperature());
+
 console.log(clothesToWear);
 
 console.log(
