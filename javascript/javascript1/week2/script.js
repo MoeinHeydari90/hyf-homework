@@ -22,3 +22,27 @@ console.log(fullname2);
 console.log(
     "--------------------------------------------------------------------"
 );
+
+// Event application
+
+function getEventWeekday(eventInDays) {
+    const weekdays = [
+        "Sunday",
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+    ];
+    const today = new Date().getDay(); // Get today's weekday index
+    const eventDayIndex = (today + eventInDays) % 7; // Calculate the index of the event day
+
+    return weekdays[eventDayIndex];
+}
+
+console.log(getEventWeekday(1)); // It returns tomorrow's weekday
+
+console.log(
+    "--------------------------------------------------------------------"
+);
