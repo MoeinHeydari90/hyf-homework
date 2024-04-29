@@ -70,3 +70,45 @@ console.log(clothesToWear);
 console.log(
     "--------------------------------------------------------------------"
 );
+
+// Student manager
+
+const class07Students = [];
+
+function addStudentToClass(name) {
+    const trimmedName = name.trim();
+    // To remove white space before or after of the name
+    if (trimmedName === "") {
+        // To avoid adding an empty string to the class
+        console.log("We cannot add an empty string to the class");
+    } else if (class07Students.includes(trimmedName)) {
+        // To avoid adding a student who has already been added to the class
+        console.log(`Student ${trimmedName} is already in the class`);
+    } else if (class07Students.length < 6 || trimmedName === "Queen") {
+        // Maximum class members are 6 unless we want to add the Queen
+        class07Students.push(trimmedName);
+    } else if (class07Students.length >= 6) {
+        console.log("Cannot add more students to class 07");
+    }
+
+    console.log(class07Students);
+}
+
+addStudentToClass("Emma");
+addStudentToClass("Alex");
+addStudentToClass("  "); // To examine the forth requirement (You cannot add an empty string to a class)
+addStudentToClass("Alex"); // To examine the second requirement (The same person cannot be added to the class)
+addStudentToClass("Lars");
+addStudentToClass("Bob");
+addStudentToClass("Rico");
+addStudentToClass("Tina");
+addStudentToClass("Sarah"); // To examine the first requirement (There can be only 6 students in a class)
+addStudentToClass("Queen"); // To examine the third requirement (if the Queen is added to the class she should always get a space)
+
+console.log(
+    `number of students in the class is ${class07Students.length} students`
+);
+
+console.log(
+    "--------------------------------------------------------------------"
+);
