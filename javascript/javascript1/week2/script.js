@@ -46,3 +46,27 @@ console.log(getEventWeekday(1)); // It returns tomorrow's weekday
 console.log(
     "--------------------------------------------------------------------"
 );
+
+//Weather wear
+
+function suggestClothes(temperature) {
+    if (temperature <= 0)
+        return `For weather ${temperature} degrees, Heavy winter coat is recommended`;
+    else if (temperature <= 10)
+        return `For weather ${temperature} degrees, Warm pants or jeans is recommended`;
+    else if (temperature <= 20)
+        return `For weather ${temperature} degrees, Light jacket or sweater is recommended`;
+    else if (temperature <= 30)
+        return `For weather ${temperature} degrees, T-shirt or blouse is recommended`;
+    else
+        return `For weather ${temperature} degrees, Light, breathable clothing is recommended`;
+}
+
+const getRandomTemperature = () => Math.floor(Math.random() * 51) - 10; // return a random number between -10 to +40
+
+const clothesToWear = suggestClothes(getRandomTemperature());
+console.log(clothesToWear);
+
+console.log(
+    "--------------------------------------------------------------------"
+);
