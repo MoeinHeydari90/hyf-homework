@@ -115,3 +115,52 @@ console.log(
 console.log(
     "--------------------------------------------------------------------"
 );
+
+// Candy helper
+
+let boughtCandyPrices = [];
+
+const candyTablePrice = {
+    sweet: 0.5,
+    chocolate: 0.7,
+    toffee: 1.1,
+    "chewing-gum": 0.03,
+};
+
+//Price calculator for each candy based on its weight
+function addCandy(candyType, weight) {
+    const candyPrice = candyTablePrice[candyType].toFixed(2) * weight; // "toFixed(2)" the price is always represented with two decimal places
+    boughtCandyPrices.push(candyPrice);
+    console.log(
+        `candyType:${candyType}  weight:${weight}  candyPrice:${candyPrice}`
+    );
+}
+
+const amountToSpend = Math.round(Math.random() * 100 + 1); // "+ 1" to make the minimum number 1
+console.log("amountToSpend: " + amountToSpend); // Amount of available money to buy candy
+
+// To check the possibility of buying more candy
+function canBuyMoreCandy() {
+    let totalSpent = 0;
+    for (let price of boughtCandyPrices) {
+        totalSpent += price;
+    }
+    console.log("totalSpent: " + totalSpent.toFixed(2));
+
+    totalSpent < amountToSpend
+        ? console.log("You can buy more, so please do!")
+        : console.log("Enough candy for you!");
+
+    return totalSpent < amountToSpend; // As long as we still have amount to spend this function will return true
+}
+
+const candies = Object.keys(candyTablePrice); // To get the list of candies from the candies price table
+
+while (canBuyMoreCandy()) {
+    // To choose a random candy each time
+    let randomIndex = Math.floor(Math.random() * candies.length);
+    let randomCandy = candies[randomIndex];
+
+    // Adding candy until the budget is over
+    addCandy(randomCandy, Math.round(Math.random() * 50 + 1));
+}
