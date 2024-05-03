@@ -1,8 +1,8 @@
 // * My free code camp link : https://www.freecodecamp.org/fcc733a70bc-2aaa-4346-b4d1-7b85038190f9
 
-// Flight booking fullname function
+// Flight booking fullName function
 
-function getFullname(firstname, surname, sex, useFormalName = false) {
+function getFullName(firstName, surname, sex, useFormalName = false) {
     let prefix = "";
 
     if (useFormalName) {
@@ -11,13 +11,13 @@ function getFullname(firstname, surname, sex, useFormalName = false) {
         else console.log("Please enter a valid gender");
     }
 
-    return `${prefix} ${firstname} ${surname}`;
+    return `${prefix} ${firstName} ${surname}`;
 }
-fullname1 = getFullname("Benjamin", "Hughes", "male");
-fullname2 = getFullname("Beatrice", "Jackson", "female", true);
+fullName1 = getFullName("Benjamin", "Hughes", "male");
+fullName2 = getFullName("Beatrice", "Jackson", "female", true);
 
-console.log(fullname1);
-console.log(fullname2);
+console.log(fullName1);
+console.log(fullName2);
 
 console.log(
     "--------------------------------------------------------------------"
