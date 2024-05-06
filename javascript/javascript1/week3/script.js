@@ -31,7 +31,7 @@ const travelInformation = {
 };
 
 function calculateTravelTime(travelInformation) {
-    // To get speed and destinationDistance from travelInformation
+    // To get speed and destinationDistance separately from the travelInformation
     const { speed, destinationDistance } = travelInformation;
 
     // Calculate total time in hours
@@ -39,15 +39,66 @@ function calculateTravelTime(travelInformation) {
 
     // Calculate hours and minutes separately
     const hours = Math.floor(totalTimeHours);
-    const minutes = Math.round((totalTimeHours - hours) * 60);
+    const minutes = Math.floor((totalTimeHours - hours) * 60);
 
     const hoursAndMinutes = `${hours} hours and ${minutes} minutes`;
 
     return hoursAndMinutes;
 }
 
-const travelTime = calculateTravelTime(travelInformation);
-console.log(travelTime); // 8 hours and 38 minutes
+console.log(calculateTravelTime(travelInformation)); // 8 hours and 38 minutes
+
+console.log(
+    "-----------------------------------------------------------------"
+);
+
+// Series duration of my life
+
+const seriesDurations = [
+    {
+        title: "Breaking Bad",
+        days: 2,
+        hours: 3,
+        minutes: 40,
+    },
+    {
+        title: "This Is Us",
+        days: 3,
+        hours: 3,
+        minutes: 15,
+    },
+    {
+        title: "Black Mirror",
+        days: 0,
+        hours: 22,
+        minutes: 32,
+    },
+];
+
+const averageLifespan = 80 * 365.25 * 24 * 60; // years * days * hours * minutes
+
+// A variable to keep the total percentage of life by all series
+let totalPercentageOfLife = 0;
+
+// To calculate the time each series took my life
+function logOutSeriesText(title, days, hours, minutes) {
+    // To calculate series length in minutes
+    const seriesLength = days * 24 * 60 + hours * 60 + minutes;
+    const percentageOfLife = (seriesLength / averageLifespan) * 100;
+
+    totalPercentageOfLife += percentageOfLife;
+
+    return `${title} took ${percentageOfLife.toFixed(3)}% of my life`;
+}
+
+// To call logOutSeriesText for each series
+seriesDurations.forEach((series) => {
+    // To get title and days and hours and minutes separately from the series
+    const { title, days, hours, minutes } = series;
+    console.log(logOutSeriesText(title, days, hours, minutes));
+});
+
+console.log(`In total that is ${totalPercentageOfLife.toFixed(3)}% of my life`);
 
 console.log(
     "-----------------------------------------------------------------"
