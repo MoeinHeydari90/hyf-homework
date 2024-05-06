@@ -103,3 +103,80 @@ console.log(`In total that is ${totalPercentageOfLife.toFixed(3)}% of my life`);
 console.log(
     "-----------------------------------------------------------------"
 );
+
+//NOnoN0nOYes (Note taking app)
+
+const notes = [];
+
+function saveNote(content, id) {
+    // To avoid adding empty content
+    if (content) {
+        // Create a new note object with content and id
+        const note = { content: content, id: id };
+        notes.push(note);
+    }
+}
+
+saveNote("Pick up groceries", 1);
+saveNote("Do laundry", 2);
+
+console.log(notes); // [{content: 'Pick up groceries', id: 1}, {content: 'Do laundry', id: 2}]
+
+function getNote(id) {
+    return notes[id - 1];
+}
+
+const firstNote = getNote(1);
+console.log(firstNote); // {content: 'Pick up groceries', id: 1}
+
+function logOutNotesFormatted() {
+    for (const note of notes)
+        console.log(
+            `The note with id: ${note.id}, has the following note text: ${note.content}`
+        );
+}
+
+logOutNotesFormatted(); // should log out the text below
+
+// The note with id: 1, has the following note text: Pick up groceries
+// The note with id: 2, has the following note text: Do laundry
+
+// This part of the code is copied from: https://codepen.io/dalsHughes/pen/poJGejX
+const textarea = document.querySelector("textarea");
+const ul = document.querySelector("ul");
+let noteId = 0;
+
+document.querySelector("button.add-note").addEventListener("click", () => {
+    saveNote(textarea.value, noteId);
+    noteId++;
+    textarea.value = "";
+
+    // Clear the ul
+    ul.innerHTML = "";
+    notes.forEach((note) => {
+        const li = document.createElement("li");
+        li.innerHTML = note.content;
+
+        // ! ↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓↓
+        // I think these would make the app better,
+        // if a note is important, the user can make its background red by clicking on it,
+        // also if a note is done, the user by double-clicking on it will make it line-through
+
+        // To make a note Important by adding a class with red background color
+        li.onclick = () => li.classList.toggle("isImportant");
+
+        // To make a note Done by adding a class with line-through style
+        li.ondblclick = () => li.classList.toggle("isDone");
+        // ! ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+
+        ul.appendChild(li);
+    });
+});
+
+document
+    .querySelector("button.log-out")
+    .addEventListener("click", logOutNotesFormatted);
+
+console.log(
+    "-----------------------------------------------------------------"
+);
