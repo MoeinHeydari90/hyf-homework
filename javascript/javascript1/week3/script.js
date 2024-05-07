@@ -180,3 +180,81 @@ document
 console.log(
     "-----------------------------------------------------------------"
 );
+
+// CactusIO-interactive (Smart phone usage app) optional
+
+// Adding an activity
+
+// Initializing an empty array for restoring the activities
+let activities = [];
+
+// To get the activity day in this format: 2/30/2024
+const today = new Date();
+const activityDay = today.toLocaleDateString();
+
+// To create an object from any activity and then adding it to the activities array
+function addActivity(activity, duration) {
+    activities.push({
+        date: activityDay,
+        activity: activity,
+        duration: duration,
+    });
+}
+
+addActivity("Youtube", 30);
+addActivity("Instagram", 40);
+addActivity("Facebook", 8);
+addActivity("Gaming", 20);
+
+// Show my status
+
+// Default value for usage limit
+let usageLimit = 90;
+
+// To check the total time of the activities and compare it with the specified limit value
+function showStatus(activities) {
+    if (activities.length === 0) {
+        return "Add some activities before calling showStatus";
+    }
+    // The initial value of the variable that will accumulate the durations of the activities
+    let totalDuration = 0;
+
+    for (let activity of activities) {
+        totalDuration += activity.duration;
+    }
+
+    let status = `You have added ${activities.length} activities. They amount to ${totalDuration} min. of usage`;
+
+    if (totalDuration > usageLimit) {
+        status +=
+            "\nYou have reached your limit, no more smart-phoning for you!";
+    }
+
+    return status;
+}
+
+console.log(showStatus(activities));
+
+// To find the activity that the user spent the most time on
+function mostTimeActivity(activities) {
+    // The initial value of two variables that we are looking for it in the activities array
+    let maxDuration = 0;
+    let mostTimeSpentActivity = "";
+
+    for (let activity of activities) {
+        if (activity.duration > maxDuration) {
+            maxDuration = activity.duration;
+            mostTimeSpentActivity = activity.activity;
+        }
+    }
+
+    return { mostTimeSpentActivity, maxDuration };
+}
+
+// To get the most used activity and its duration
+const { mostTimeSpentActivity: activity, maxDuration } =
+    mostTimeActivity(activities);
+
+console.log(
+    `The activity with the most time spent is: ${activity} with duration: ${maxDuration}`
+);
