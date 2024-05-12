@@ -81,7 +81,10 @@ const averageLifespan = 80 * 365.25 * 24 * 60; // years * days * hours * minutes
 let totalPercentageOfLife = 0;
 
 // To calculate the time each series took my life
-function logOutSeriesText(title, days, hours, minutes) {
+function logOutSeriesText(series) {
+    // To get title and days and hours and minutes separately from the series
+    const { title, days, hours, minutes } = series;
+
     // To calculate series length in minutes
     const seriesLength = days * 24 * 60 + hours * 60 + minutes;
     const percentageOfLife = (seriesLength / averageLifespan) * 100;
@@ -93,10 +96,12 @@ function logOutSeriesText(title, days, hours, minutes) {
 
 // To call logOutSeriesText for each series
 seriesDurations.forEach((series) => {
-    // To get title and days and hours and minutes separately from the series
-    const { title, days, hours, minutes } = series;
-    console.log(logOutSeriesText(title, days, hours, minutes));
+    console.log(logOutSeriesText(series));
 });
+
+//seriesDurations.forEach((series) => {
+// console.log(logOutSeriesText(series));
+//}
 
 console.log(`In total that is ${totalPercentageOfLife.toFixed(3)}% of my life`);
 
@@ -190,7 +195,7 @@ console.log(
 // Adding an activity
 
 // Initializing an empty array for restoring the activities
-let activities = [];
+const activities = [];
 
 // To get the activity day in this format: 2/30/2024
 const today = new Date();
@@ -213,7 +218,7 @@ addActivity("Gaming", 20);
 // Show my status
 
 // Default value for usage limit
-let usageLimit = 90;
+const usageLimit = 90;
 
 // To check the total time of the activities and compare it with the specified limit value
 function showStatus(activities) {
@@ -223,7 +228,7 @@ function showStatus(activities) {
     // The initial value of the variable that will accumulate the durations of the activities
     let totalDuration = 0;
 
-    for (let activity of activities) {
+    for (const activity of activities) {
         totalDuration += activity.duration;
     }
 
@@ -245,7 +250,7 @@ function mostTimeActivity(activities) {
     let maxDuration = 0;
     let mostTimeSpentActivity = "";
 
-    for (let activity of activities) {
+    for (const activity of activities) {
         if (activity.duration > maxDuration) {
             maxDuration = activity.duration;
             mostTimeSpentActivity = activity.activity;
