@@ -8,6 +8,7 @@ const matchesObject = {
     helloMatch: /hello my name is (\w+)/,
     nameMatch: /what is my name/,
     addMatch: /add (.+) to my todo/,
+    removeMatch: /remove (.+) from my todo/,
 };
 
 // Initializing a variable and an empty array for storing data
@@ -44,6 +45,22 @@ function getReply(command) {
                     const todo = match[1];
                     myTodo.push(todo);
                     return `${todo} added to your todo`;
+
+                case "removeMatch":
+                    // Extract the todo to be removed from the matched groups
+                    const todoToRemove = match[1];
+
+                    // Find the index of the todo in the todo list
+                    const indexToRemove = myTodo.indexOf(todoToRemove);
+
+                    // Check if the todo exists in the todo list.
+                    if (indexToRemove !== -1) {
+                        // Remove the todo from the todo list using splice.
+                        myTodo.splice(indexToRemove, 1);
+                        return `Removed ${todoToRemove} from your todo`;
+                    } else {
+                        return `${todoToRemove} is not in your todo list`;
+                    }
             }
         }
     }
@@ -58,3 +75,5 @@ console.log(getReply("What is my name?")); // "Your name is Benjamin"
 console.log(getReply("Add fishing to my todo")); // "fishing added to your todo"
 console.log(getReply("Add drinking tea with my friends to my todo")); // "drinking tea with my friends added to your todo"
 console.log(getReply("Add singing in the shower to my todo")); // "singing in the shower added to your todo"
+console.log(getReply("Remove fishing from my todo")); // "Removed fishing from your todo"
+console.log(getReply("Remove cleaning from my todo")); // "cleaning is not in your todo list"
