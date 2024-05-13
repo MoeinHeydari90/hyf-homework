@@ -7,10 +7,12 @@
 const matchesObject = {
     helloMatch: /hello my name is (\w+)/,
     nameMatch: /what is my name/,
+    addMatch: /add (.+) to my todo/,
 };
 
-// Initializing a variable for storing data
+// Initializing a variable and an empty array for storing data
 let name = "";
+const myTodo = [];
 
 // Process user commands, matches them against patterns, and returns responses based on the command
 function getReply(command) {
@@ -36,6 +38,12 @@ function getReply(command) {
                     if (!name) {
                         return `I don't know your name`;
                     } else return `Your name is ${name}`;
+
+                case "addMatch":
+                    // Extract the todo from the matched groups
+                    const todo = match[1];
+                    myTodo.push(todo);
+                    return `${todo} added to your todo`;
             }
         }
     }
@@ -44,5 +52,9 @@ function getReply(command) {
 }
 
 console.log(getReply("What is my name?")); // "I don't know your name"
+console.log(getReply("What is on my todo?")); // "Your todo list is empty"
 console.log(getReply("Hello my name is benJAMin")); // "Nice to meet you Benjamin"
 console.log(getReply("What is my name?")); // "Your name is Benjamin"
+console.log(getReply("Add fishing to my todo")); // "fishing added to your todo"
+console.log(getReply("Add drinking tea with my friends to my todo")); // "drinking tea with my friends added to your todo"
+console.log(getReply("Add singing in the shower to my todo")); // "singing in the shower added to your todo"
