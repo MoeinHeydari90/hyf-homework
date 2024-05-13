@@ -9,6 +9,7 @@ const matchesObject = {
     nameMatch: /what is my name/,
     addMatch: /add (.+) to my todo/,
     removeMatch: /remove (.+) from my todo/,
+    todoMatch: /what is on my todo/,
 };
 
 // Initializing a variable and an empty array for storing data
@@ -61,6 +62,17 @@ function getReply(command) {
                     } else {
                         return `${todoToRemove} is not in your todo list`;
                     }
+
+                case "todoMatch":
+                    if (myTodo.length === 0) {
+                        return "Your todo list is empty";
+                    } else {
+                        let todos = `You have ${myTodo.length} todos - `;
+                        // To add an 'and' between todos
+                        todos += myTodo.join(" and ");
+
+                        return todos;
+                    }
             }
         }
     }
@@ -77,3 +89,4 @@ console.log(getReply("Add drinking tea with my friends to my todo")); // "drinki
 console.log(getReply("Add singing in the shower to my todo")); // "singing in the shower added to your todo"
 console.log(getReply("Remove fishing from my todo")); // "Removed fishing from your todo"
 console.log(getReply("Remove cleaning from my todo")); // "cleaning is not in your todo list"
+console.log(getReply("What is on my todo?")); // "You have 2 todos - Drinking tea with my friends and singing in the shower"
