@@ -11,6 +11,7 @@ const matchesObject = {
     removeMatch: /remove (.+) from my todo/,
     todoMatch: /what is on my todo/,
     todayMatch: /what day is it today/,
+    mathMatch: /what is (\d+)\s*([\s\S])\s*(\d+)/,
 };
 
 // Initializing a variable and an empty array for storing data
@@ -83,6 +84,34 @@ function getReply(command) {
                     });
                     const year = today.getFullYear();
                     return `${day}. of ${month} ${year}`;
+
+                case "mathMatch":
+                    // Extracts two numbers and operator from the matched groups
+                    const firstNumber = parseInt(match[1]);
+                    const operator = match[2];
+                    const secondNumber = parseInt(match[3]);
+
+                    // Initialize the variable that holds the result of the mathematical expression
+                    let calculationResult;
+                    // Performs the appropriate mathematical operation based on the operator
+                    switch (operator) {
+                        case "+":
+                            calculationResult = firstNumber + secondNumber;
+                            break;
+                        case "-":
+                            calculationResult = firstNumber - secondNumber;
+                            break;
+                        case "*":
+                            calculationResult = firstNumber * secondNumber;
+                            break;
+                        case "/":
+                            calculationResult = firstNumber / secondNumber;
+                            break;
+
+                        default:
+                            return "Invalid operator";
+                    }
+                    return calculationResult;
             }
         }
     }
@@ -101,3 +130,5 @@ console.log(getReply("Remove fishing from my todo")); // "Removed fishing from y
 console.log(getReply("Remove cleaning from my todo")); // "cleaning is not in your todo list"
 console.log(getReply("What is on my todo?")); // "You have 2 todos - Drinking tea with my friends and singing in the shower"
 console.log(getReply("What day is it today?")); // "14. of May 2024"
+console.log(getReply("What is 4 ^ 12")); // "Invalid operator"
+console.log(getReply("What is 4 * 12")); // "48"
