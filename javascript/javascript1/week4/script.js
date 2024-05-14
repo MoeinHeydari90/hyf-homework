@@ -12,6 +12,7 @@ const matchesObject = {
     todoMatch: /what is on my todo/,
     todayMatch: /what day is it today/,
     mathMatch: /what is (\d+)\s*([\s\S])\s*(\d+)/,
+    timerMatch: /set a timer for (\d+) minutes/,
 };
 
 // Initializing a variable and an empty array for storing data
@@ -112,6 +113,17 @@ function getReply(command) {
                             return "Invalid operator";
                     }
                     return calculationResult;
+
+                case "timerMatch":
+                    // Parses the minutes from the match object and converts it to an integer
+                    const minutes = parseInt(match[1]);
+
+                    // Sets a timer to execute a callback function after the specified number of minutes
+                    setTimeout(() => {
+                        console.log("Timer done");
+                    }, minutes * 60 * 1000); // minutes * seconds * milliseconds
+
+                    return `Timer set for ${minutes} minutes`;
             }
         }
     }
@@ -132,3 +144,4 @@ console.log(getReply("What is on my todo?")); // "You have 2 todos - Drinking te
 console.log(getReply("What day is it today?")); // "14. of May 2024"
 console.log(getReply("What is 4 ^ 12")); // "Invalid operator"
 console.log(getReply("What is 4 * 12")); // "48"
+console.log(getReply("Set a timer for 4 minutes")); // "Timer set for 4 minutes"
