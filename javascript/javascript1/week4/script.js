@@ -13,6 +13,7 @@ const matchesObject = {
     todayMatch: /what day is it today/,
     mathMatch: /what is (\d+)\s*([\s\S])\s*(\d+)/,
     timerMatch: /set a timer for (\d+) minutes/,
+    birthdayMatch: /my birthday is (\d{1,2})\/(\d{1,2})\/(\d{2,4})/,
 };
 
 // Initializing a variable and an empty array for storing data
@@ -124,6 +125,24 @@ function getReply(command) {
                     }, minutes * 60 * 1000); // minutes * seconds * milliseconds
 
                     return `Timer set for ${minutes} minutes`;
+
+                case "birthdayMatch":
+                    // Extracting day, month, and year from the 'match' array and creating a new Date object representing the birth date
+                    const birthDate = new Date(
+                        `${match[1]}/${match[2]}/${match[3]}`
+                    ); // dd/mm/yyyy
+
+                    // Calculating the difference between the current date and the birth date in milliseconds
+                    const ageDifferenceInMilliseconds =
+                        Date.now() - birthDate.getTime();
+
+                    // Creating a new Date object representing the age from the age difference in milliseconds
+                    const ageDate = new Date(ageDifferenceInMilliseconds);
+
+                    // Extracting the year component of the ageDate object to get the age
+                    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+
+                    return `You are ${age} years old`;
             }
         }
     }
@@ -145,3 +164,4 @@ console.log(getReply("What day is it today?")); // "14. of May 2024"
 console.log(getReply("What is 4 ^ 12")); // "Invalid operator"
 console.log(getReply("What is 4 * 12")); // "48"
 console.log(getReply("Set a timer for 4 minutes")); // "Timer set for 4 minutes"
+console.log(getReply("My birthday is 10/12/1990")); // "You are 33 years old"
