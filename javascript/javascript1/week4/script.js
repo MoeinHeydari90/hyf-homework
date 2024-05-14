@@ -5,15 +5,15 @@
 
 // An object containing regular expressions for matching user commands and their corresponding actions.
 const matchesObject = {
-    helloMatch: /hello my name is (\w+)/,
+    helloMatch: /hello my name is (\w+)/, // Fx: Hello my name is Benjamin
     nameMatch: /what is my name/,
-    addMatch: /add (.+) to my todo/,
-    removeMatch: /remove (.+) from my todo/,
+    addMatch: /add (.+) to my todo/, // Fx: Add fishing to my todo
+    removeMatch: /remove (.+) from my todo/, // Fx: Remove fishing from my todo
     todoMatch: /what is on my todo/,
     todayMatch: /what day is it today/,
-    mathMatch: /what is (\d+)\s*([\s\S])\s*(\d+)/,
-    timerMatch: /set a timer for (\d+) minutes/,
-    birthdayMatch: /my birthday is (\d{1,2})\/(\d{1,2})\/(\d{2,4})/,
+    mathMatch: /what is (\d+)\s*([\s\S])\s*(\d+)/, // Fx: what is 4 * 12
+    timerMatch: /set a timer for (\d+) minutes/, // Fx: Set a timer for 10 minutes
+    birthdayMatch: /my birthday is (\d{1,2})\/(\d{1,2})\/(\d{2,4})/, // Fx: My birthday is 30/5/1982
 };
 
 // Initializing a variable and an empty array for storing data
@@ -165,3 +165,4 @@ console.log(getReply("What is 4 ^ 12")); // "Invalid operator"
 console.log(getReply("What is 4 * 12")); // "48"
 console.log(getReply("Set a timer for 4 minutes")); // "Timer set for 4 minutes"
 console.log(getReply("My birthday is 10/12/1990")); // "You are 33 years old"
+console.log(getReply("The show must go on")); // "Sorry, I didn't understand that command."
