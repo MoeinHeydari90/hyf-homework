@@ -10,6 +10,7 @@ const matchesObject = {
     addMatch: /add (.+) to my todo/,
     removeMatch: /remove (.+) from my todo/,
     todoMatch: /what is on my todo/,
+    todayMatch: /what day is it today/,
 };
 
 // Initializing a variable and an empty array for storing data
@@ -73,6 +74,15 @@ function getReply(command) {
 
                         return todos;
                     }
+
+                case "todayMatch":
+                    const today = new Date();
+                    const day = today.getDate();
+                    const month = today.toLocaleString("default", {
+                        month: "long",
+                    });
+                    const year = today.getFullYear();
+                    return `${day}. of ${month} ${year}`;
             }
         }
     }
@@ -90,3 +100,4 @@ console.log(getReply("Add singing in the shower to my todo")); // "singing in th
 console.log(getReply("Remove fishing from my todo")); // "Removed fishing from your todo"
 console.log(getReply("Remove cleaning from my todo")); // "cleaning is not in your todo list"
 console.log(getReply("What is on my todo?")); // "You have 2 todos - Drinking tea with my friends and singing in the shower"
+console.log(getReply("What day is it today?")); // "14. of May 2024"
