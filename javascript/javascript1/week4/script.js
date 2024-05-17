@@ -16,6 +16,14 @@ const matchesObject = {
     birthdayMatch: /my birthday is (\d{1,2})\/(\d{1,2})\/(\d{2,4})/, // Fx: My birthday is 30/5/1982
 };
 
+// An object containing operations for "mathMatch"
+const operations = {
+    "+": (a, b) => a + b,
+    "-": (a, b) => a - b,
+    "*": (a, b) => a * b,
+    "/": (a, b) => a / b,
+};
+
 // Initializing a variable and an empty array for storing data
 let name = "";
 const myTodo = [];
@@ -82,27 +90,17 @@ function mathMatch(match) {
     const operator = match[2];
     const secondNumber = parseInt(match[3]);
 
-    // Initialize the variable that holds the result of the mathematical expression
-    let calculationResult;
-
-    // Performs the appropriate mathematical operation based on the operator
-    switch (operator) {
-        case "+":
-            calculationResult = firstNumber + secondNumber;
-            break;
-        case "-":
-            calculationResult = firstNumber - secondNumber;
-            break;
-        case "*":
-            calculationResult = firstNumber * secondNumber;
-            break;
-        case "/":
-            calculationResult = firstNumber / secondNumber;
-            break;
-        default:
-            return "Invalid operator";
+    // Checks if the operator is valid and performs the corresponding operation
+    if (operations[operator]) {
+        // Calls the function associated with the operator to calculate the result
+        const calculationResult = operations[operator](
+            firstNumber,
+            secondNumber
+        );
+        return calculationResult;
+    } else {
+        return "Invalid operator";
     }
-    return calculationResult;
 }
 
 // Function to handle "timerMatch"
