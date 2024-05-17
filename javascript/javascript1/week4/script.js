@@ -125,14 +125,7 @@ function birthdayMatch(match) {
     // Construct the birthDate object using the declared variables
     const birthDate = new Date(`${day}/${month}/${year}`);
 
-    // Calculating the difference between the current date and the birth date in milliseconds
-    const ageDifferenceInMilliseconds = Date.now() - birthDate.getTime();
-
-    // Creating a new Date object representing the age from the age difference in milliseconds
-    const ageDate = new Date(ageDifferenceInMilliseconds);
-
-    // Extracting the year component of the ageDate object to get the age
-    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    const age = new Date().getFullYear() - birthDate.getFullYear();
     return `You are ${age} years old`;
 }
 
