@@ -20,133 +20,147 @@ const matchesObject = {
 let name = "";
 const myTodo = [];
 
+// Function to handle "helloMatch"
+function helloMatch(match) {
+    // To make the first letter capital
+    name = match[1].charAt(0).toUpperCase() + match[1].slice(1);
+    return `Nice to meet you ${name}`;
+}
+
+// Function to handle "nameMatch"
+function nameMatch() {
+    return name ? `Your name is ${name}` : "I don't know your name";
+}
+
+// Function to handle "addMatch"
+function addMatch(match) {
+    const todo = match[1];
+    myTodo.push(todo);
+    return `${todo} added to your todo`;
+}
+
+// Function to handle "removeMatch"
+function removeMatch(match) {
+    const todoToRemove = match[1];
+    // Find the index of the todo in the todo list
+    const indexToRemove = myTodo.indexOf(todoToRemove);
+
+    // Check if the todo exists in the todo list
+    if (indexToRemove !== -1) {
+        // Remove the todo from the todo list using splice
+        myTodo.splice(indexToRemove, 1);
+        return `Removed ${todoToRemove} from your todo`;
+    } else {
+        return `${todoToRemove} is not in your todo list`;
+    }
+}
+
+// Function to handle "todoMatch"
+function todoMatch() {
+    if (myTodo.length === 0) {
+        return "Your todo list is empty";
+    } else {
+        let todos = `You have ${myTodo.length} todos - `;
+        todos += myTodo.join(" and ");
+        return todos;
+    }
+}
+
+// Function to handle "todayMatch"
+function todayMatch() {
+    const today = new Date();
+    const day = today.getDate();
+    const month = today.toLocaleString("default", { month: "long" });
+    const year = today.getFullYear();
+    return `${day}. of ${month} ${year}`;
+}
+
+// Function to handle "mathMatch"
+function mathMatch(match) {
+    // Extracts two numbers and operator from the matched groups
+    const firstNumber = parseInt(match[1]);
+    const operator = match[2];
+    const secondNumber = parseInt(match[3]);
+
+    // Initialize the variable that holds the result of the mathematical expression
+    let calculationResult;
+
+    // Performs the appropriate mathematical operation based on the operator
+    switch (operator) {
+        case "+":
+            calculationResult = firstNumber + secondNumber;
+            break;
+        case "-":
+            calculationResult = firstNumber - secondNumber;
+            break;
+        case "*":
+            calculationResult = firstNumber * secondNumber;
+            break;
+        case "/":
+            calculationResult = firstNumber / secondNumber;
+            break;
+        default:
+            return "Invalid operator";
+    }
+    return calculationResult;
+}
+
+// Function to handle "timerMatch"
+function timerMatch(match) {
+    // Parses the minutes from the match object and converts it to an integer
+    const minutes = parseInt(match[1]);
+
+    // Sets a timer to execute a callback function after the specified number of minutes
+    setTimeout(() => {
+        console.log("Timer done");
+    }, minutes * 60 * 1000);
+    return `Timer set for ${minutes} minutes`;
+}
+
+// Function to handle "birthdayMatch"
+function birthdayMatch(match) {
+    const birthDate = new Date(`${match[1]}/${match[2]}/${match[3]}`); // dd/mm/yyyy
+
+    // Calculating the difference between the current date and the birth date in milliseconds
+    const ageDifferenceInMilliseconds = Date.now() - birthDate.getTime();
+
+    // Creating a new Date object representing the age from the age difference in milliseconds
+    const ageDate = new Date(ageDifferenceInMilliseconds);
+
+    // Extracting the year component of the ageDate object to get the age
+    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
+    return `You are ${age} years old`;
+}
+
 // Process user commands, matches them against patterns, and returns responses based on the command
 function getReply(command) {
     command = command.toLowerCase(); // Convert the command to lowercase
 
-    // Iterate over each key-value pair in the matchesObject to find a match
     for (const [key, value] of Object.entries(matchesObject)) {
-        // Attempt to match the command against the current value (regular expression)
         const match = command.match(value);
-
-        // Only if a match is found, enter to the switch case
         if (match) {
             switch (key) {
                 case "helloMatch":
-                    // Extract the name from the matched groups
-                    name = match[1];
-                    // To make the first letter capital
-                    name = name.charAt(0).toUpperCase() + name.slice(1);
-
-                    return `Nice to meet you ${name}`;
-
+                    return helloMatch(match);
                 case "nameMatch":
-                    if (!name) {
-                        return `I don't know your name`;
-                    } else return `Your name is ${name}`;
-
+                    return nameMatch();
                 case "addMatch":
-                    // Extract the todo from the matched groups
-                    const todo = match[1];
-                    myTodo.push(todo);
-                    return `${todo} added to your todo`;
-
+                    return addMatch(match);
                 case "removeMatch":
-                    // Extract the todo to be removed from the matched groups
-                    const todoToRemove = match[1];
-
-                    // Find the index of the todo in the todo list
-                    const indexToRemove = myTodo.indexOf(todoToRemove);
-
-                    // Check if the todo exists in the todo list.
-                    if (indexToRemove !== -1) {
-                        // Remove the todo from the todo list using splice.
-                        myTodo.splice(indexToRemove, 1);
-                        return `Removed ${todoToRemove} from your todo`;
-                    } else {
-                        return `${todoToRemove} is not in your todo list`;
-                    }
-
+                    return removeMatch(match);
                 case "todoMatch":
-                    if (myTodo.length === 0) {
-                        return "Your todo list is empty";
-                    } else {
-                        let todos = `You have ${myTodo.length} todos - `;
-                        // To add an 'and' between todos
-                        todos += myTodo.join(" and ");
-
-                        return todos;
-                    }
-
+                    return todoMatch();
                 case "todayMatch":
-                    const today = new Date();
-                    const day = today.getDate();
-                    const month = today.toLocaleString("default", {
-                        month: "long",
-                    });
-                    const year = today.getFullYear();
-                    return `${day}. of ${month} ${year}`;
-
+                    return todayMatch();
                 case "mathMatch":
-                    // Extracts two numbers and operator from the matched groups
-                    const firstNumber = parseInt(match[1]);
-                    const operator = match[2];
-                    const secondNumber = parseInt(match[3]);
-
-                    // Initialize the variable that holds the result of the mathematical expression
-                    let calculationResult;
-                    // Performs the appropriate mathematical operation based on the operator
-                    switch (operator) {
-                        case "+":
-                            calculationResult = firstNumber + secondNumber;
-                            break;
-                        case "-":
-                            calculationResult = firstNumber - secondNumber;
-                            break;
-                        case "*":
-                            calculationResult = firstNumber * secondNumber;
-                            break;
-                        case "/":
-                            calculationResult = firstNumber / secondNumber;
-                            break;
-
-                        default:
-                            return "Invalid operator";
-                    }
-                    return calculationResult;
-
+                    return mathMatch(match);
                 case "timerMatch":
-                    // Parses the minutes from the match object and converts it to an integer
-                    const minutes = parseInt(match[1]);
-
-                    // Sets a timer to execute a callback function after the specified number of minutes
-                    setTimeout(() => {
-                        console.log("Timer done");
-                    }, minutes * 60 * 1000); // minutes * seconds * milliseconds
-
-                    return `Timer set for ${minutes} minutes`;
-
+                    return timerMatch(match);
                 case "birthdayMatch":
-                    // Extracting day, month, and year from the 'match' array and creating a new Date object representing the birth date
-                    const birthDate = new Date(
-                        `${match[1]}/${match[2]}/${match[3]}`
-                    ); // dd/mm/yyyy
-
-                    // Calculating the difference between the current date and the birth date in milliseconds
-                    const ageDifferenceInMilliseconds =
-                        Date.now() - birthDate.getTime();
-
-                    // Creating a new Date object representing the age from the age difference in milliseconds
-                    const ageDate = new Date(ageDifferenceInMilliseconds);
-
-                    // Extracting the year component of the ageDate object to get the age
-                    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-
-                    return `You are ${age} years old`;
+                    return birthdayMatch(match);
             }
         }
     }
-    // If the command do not match with any value of the matchesObject, then
     return "Sorry, I didn't understand that command.";
 }
 
@@ -159,7 +173,7 @@ console.log(getReply("Add drinking tea with my friends to my todo")); // "drinki
 console.log(getReply("Add singing in the shower to my todo")); // "singing in the shower added to your todo"
 console.log(getReply("Remove fishing from my todo")); // "Removed fishing from your todo"
 console.log(getReply("Remove cleaning from my todo")); // "cleaning is not in your todo list"
-console.log(getReply("What is on my todo?")); // "You have 2 todos - Drinking tea with my friends and singing in the shower"
+console.log(getReply("What is on my todo?")); // "You have 2 todos - drinking tea with my friends and singing in the shower"
 console.log(getReply("What day is it today?")); // "14. of May 2024"
 console.log(getReply("What is 4 ^ 12")); // "Invalid operator"
 console.log(getReply("What is 4 * 12")); // "48"
