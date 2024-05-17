@@ -117,7 +117,13 @@ function timerMatch(match) {
 
 // Function to handle "birthdayMatch"
 function birthdayMatch(match) {
-    const birthDate = new Date(`${match[1]}/${match[2]}/${match[3]}`); // dd/mm/yyyy
+    // Declare day, month, and year as separate variables
+    const day = parseInt(match[1]);
+    const month = parseInt(match[2]);
+    const year = parseInt(match[3]);
+
+    // Construct the birthDate object using the declared variables
+    const birthDate = new Date(`${day}/${month}/${year}`);
 
     // Calculating the difference between the current date and the birth date in milliseconds
     const ageDifferenceInMilliseconds = Date.now() - birthDate.getTime();
