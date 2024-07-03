@@ -62,10 +62,8 @@ GROUP BY user.name;
 
 
 -- Find how many tasks with a status=Done each user is responsible for;
-SELECT user.name, COUNT(task.id) AS done_task_count
+SELECT user.name, COUNT(*) AS done_task_count
 FROM user
-JOIN task ON user.id = task.user_id
-JOIN status ON task.status_id = status.id
-WHERE status.name = 'Done'
-GROUP BY user.name
-ORDER BY done_task_count DESC;
+JOIN task ON task.user_id = user.id
+WHERE task.status_id = 3
+GROUP BY user.name;
