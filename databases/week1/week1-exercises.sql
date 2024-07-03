@@ -1,5 +1,6 @@
 -- https://github.com/HackYourFuture-CPH/databases/blob/main/lesson1/lesson-data.sql
 
+
 -- Select the names and phones of all users;
 SELECT name, phone
 FROM user;
