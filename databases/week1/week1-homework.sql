@@ -13,15 +13,18 @@ WHERE due_date IS NULL;
 
 
 -- Find all the tasks that are marked as done
-SELECT *
+SELECT task.* 
 FROM task
-WHERE task.status_id = 3;
+JOIN status ON task.status_id = status.id
+WHERE status.name = 'Done';
 
 
 -- Find all the tasks that are not marked as done
-SELECT *
+SELECT task.*
 FROM task
-WHERE task.status_id != 3;
+JOIN status ON task.status_id = status.id
+WHERE status.name != 'Done';
+
 
 -- Get all the tasks, sorted with the most recently created first
 SELECT *
