@@ -41,3 +41,10 @@ CREATE TABLE article (
     title VARCHAR(255) NOT NULL,
     content TEXT NOT NULL
 );
+
+
+DROP TABLE IF EXISTS author;
+CREATE TABLE author (
+    id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL
+);
