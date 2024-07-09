@@ -64,3 +64,13 @@ CREATE TABLE article_author (
     FOREIGN KEY (article_id) REFERENCES article(id),
     FOREIGN KEY (author_id) REFERENCES author(id)
 );
+
+
+DROP TABLE IF EXISTS article_tag;
+CREATE TABLE ArticleTag (
+    article_id INT,
+    tag_name VARCHAR(50),
+    PRIMARY KEY (article_id, tag_name),
+    FOREIGN KEY (article_id) REFERENCES article(id),
+    FOREIGN KEY (tag_name) REFERENCES tag(name)
+);
