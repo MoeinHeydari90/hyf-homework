@@ -16,3 +16,13 @@ FROM user
 LEFT JOIN user_task ON user.id = user_task.user_id
 GROUP BY user.name;
 
+
+-- Find how many tasks with a status=Done each user is responsible for;
+SELECT user.name, COUNT(task.id) AS task_count
+FROM user
+LEFT JOIN user_task ON user.id = user_task.user_id
+LEFT JOIN task ON user_task.task_id = task.id AND 
+    task.status_id = (
+    SELECT id FROM status
+    WHERE name = 'Done')
+GROUP BY user.name;
