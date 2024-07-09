@@ -1,5 +1,9 @@
 -- https://github.com/HackYourFuture-CPH/databases/blob/main/lesson2/class_exercises.md#design-and-implement-a-database-for-existing-data
 
+
+-- Queries
+
+
 -- Get all the tasks assigned to Pavel;
 SELECT task.id AS task_id, task.title, status.name AS status
 FROM user_task
@@ -26,3 +30,14 @@ LEFT JOIN task ON user_task.task_id = task.id AND
     SELECT id FROM status
     WHERE name = 'Done')
 GROUP BY user.name;
+
+
+-- Design and implement a database for existing data
+-- https://github.com/HackYourFuture-CPH/databases/blob/main/lesson2/articles_example.json
+
+DROP TABLE IF EXISTS article;
+CREATE TABLE article (
+    id INT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL
+);
