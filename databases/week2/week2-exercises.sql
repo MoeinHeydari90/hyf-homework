@@ -10,4 +10,9 @@ WHERE user.name LIKE "%Pavel%"
 ORDER BY task_id;
 
 
+-- Find how many tasks each user is responsible for;
+SELECT user.name, COUNT(user_task.task_id) AS task_count
+FROM user
+LEFT JOIN user_task ON user.id = user_task.user_id
+GROUP BY user.name;
 
