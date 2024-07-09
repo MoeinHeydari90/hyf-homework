@@ -50,7 +50,17 @@ CREATE TABLE author (
 );
 
 
-DROP TABLE IF EXISTS Tag;
-CREATE TABLE Tag (
+DROP TABLE IF EXISTS tag;
+CREATE TABLE tag (
     name VARCHAR(50) PRIMARY KEY
+);
+
+
+DROP TABLE IF EXISTS article_author;
+CREATE TABLE article_author (
+    article_id INT,
+    author_id INT,
+    PRIMARY KEY (article_id, author_id),
+    FOREIGN KEY (article_id) REFERENCES article(id),
+    FOREIGN KEY (author_id) REFERENCES author(id)
 );
