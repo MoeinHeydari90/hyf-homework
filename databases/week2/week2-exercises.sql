@@ -90,3 +90,13 @@ INSERT INTO author (id, name) VALUES
 (3, 'Aliya Awad'),
 (4, 'Igor Vladimir'),
 (5, 'Kim Jensen');
+
+
+-- Insert data into tag
+INSERT INTO tag (name) VALUES
+('science'),
+('breaking'),
+('weather'),
+('winter'),
+('clickbait');
+
