@@ -100,3 +100,12 @@ INSERT INTO tag (name) VALUES
 ('winter'),
 ('clickbait');
 
+
+-- Insert data into article_author
+INSERT INTO article_author (article_id, author_id) VALUES
+(1, 1),
+(1, 2),
+(2, 3),
+(2, 4),
+(3, 2),
+(3, 5);
