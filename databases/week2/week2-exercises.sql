@@ -67,7 +67,7 @@ CREATE TABLE article_author (
 
 
 DROP TABLE IF EXISTS article_tag;
-CREATE TABLE ArticleTag (
+CREATE TABLE article_tag (
     article_id INT,
     tag_name VARCHAR(50),
     PRIMARY KEY (article_id, tag_name),
@@ -109,3 +109,13 @@ INSERT INTO article_author (article_id, author_id) VALUES
 (2, 4),
 (3, 2),
 (3, 5);
+
+
+-- Insert data into article_tag
+INSERT INTO article_tag (article_id, tag_name) VALUES
+(1, 'science'),
+(1, 'breaking'),
+(2, 'weather'),
+(2, 'winter'),
+(3, 'clickbait'),
+(3, 'breaking');
