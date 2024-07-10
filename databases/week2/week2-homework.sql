@@ -10,3 +10,9 @@ INSERT INTO task (title, description, created, updated, due_date, status_id, use
 UPDATE task
 SET title = 'Learn about TypeScript and NodeJS'
 WHERE task.id = LAST_INSERT_ID ();
+
+
+-- Change a task due date
+UPDATE task
+SET due_date = '2024-09-11 10:30:00'
+WHERE title = 'Learn about TypeScript and NodeJS';
