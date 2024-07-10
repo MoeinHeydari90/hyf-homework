@@ -28,3 +28,8 @@ WHERE title = 'Wash clothes';
 UPDATE task
 SET status_id = 3
 WHERE title = 'Wash the car';
+
+
+-- Delete a task
+DELETE FROM task
+WHERE title = 'Wash clothes';
