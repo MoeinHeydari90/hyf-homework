@@ -22,3 +22,9 @@ WHERE title = 'Learn about TypeScript and NodeJS';
 UPDATE task
 SET status_id = 3
 WHERE title = 'Wash clothes';
+
+
+-- Mark a task as complete
+UPDATE task
+SET status_id = 3
+WHERE title = 'Wash the car';
