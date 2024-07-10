@@ -74,3 +74,10 @@ CREATE TABLE ArticleTag (
     FOREIGN KEY (article_id) REFERENCES article(id),
     FOREIGN KEY (tag_name) REFERENCES tag(name)
 );
+
+
+-- Insert data into article
+INSERT INTO article (id, title, content) VALUES
+(1, 'BREAKING NEWS: Water is wet!', 'Scientists have discovered that water is wet, it''s amazing what.... ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.'),
+(2, 'Heavy Snowfall Expected this Weekend', 'Lots of snow is expected... Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.'),
+(3, 'BREAKING NEWS: These 10 Clickbait Titles Are Bad for Your Health, Number 7 Will SHOCK You!', 'Haha, you clicked! Minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat ');
