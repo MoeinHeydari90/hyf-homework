@@ -35,6 +35,10 @@ GROUP BY user.name;
 -- Design and implement a database for existing data
 -- https://github.com/HackYourFuture-CPH/databases/blob/main/lesson2/articles_example.json
 
+CREATE DATABASE articles;
+USE articles;
+
+
 DROP TABLE IF EXISTS article;
 CREATE TABLE article (
     id INT PRIMARY KEY,

@@ -20,3 +20,11 @@ CREATE TABLE student (
     class_id INT,
     FOREIGN KEY (class_id) REFERENCES class(id)
 );
+
+-- Create an index on the name column of the Student table
+CREATE INDEX idx_student_name ON student(name);
+
+
+-- Add a new column to the Class table named status
+ALTER TABLE class
+ADD status ENUM('not-started', 'ongoing', 'finished') NOT NULL DEFAULT 'not-started';
