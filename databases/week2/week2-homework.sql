@@ -16,3 +16,9 @@ WHERE task.id = LAST_INSERT_ID ();
 UPDATE task
 SET due_date = '2024-09-11 10:30:00'
 WHERE title = 'Learn about TypeScript and NodeJS';
+
+
+-- Change a task status
+UPDATE task
+SET status_id = 3
+WHERE title = 'Wash clothes';
