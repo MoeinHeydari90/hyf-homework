@@ -3,10 +3,19 @@
 CREATE DATABASE LibraryDB;
 USE LibraryDB;
 
+
+DROP TABLE IF EXISTS books;
 CREATE TABLE books (
     book_id INT PRIMARY KEY,
     title VARCHAR(200) NOT NULL,
     author VARCHAR(100) NOT NULL,
     isbn VARCHAR(20),
     published_year INT
+);
+
+
+DROP TABLE IF EXISTS genres;
+CREATE TABLE genres (
+    genre_id INT PRIMARY KEY,
+    genre_name VARCHAR(100) NOT NULL
 );
