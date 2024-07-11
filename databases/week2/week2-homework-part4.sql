@@ -29,3 +29,25 @@ CREATE TABLE members (
     membership_date DATE NOT NULL,
     email VARCHAR(100) NOT NULL
 );
+
+
+DROP TABLE IF EXISTS borrowing_log;
+CREATE TABLE borrowing_log (
+    borrow_id INT PRIMARY KEY,
+    book_id INT,
+    member_id INT,
+    borrow_date DATE NOT NULL,
+    return_date DATE,
+    FOREIGN KEY (book_id) REFERENCES books(book_id),
+    FOREIGN KEY (member_id) REFERENCES members(member_id)
+);
+
+
+DROP TABLE IF EXISTS book_genres;
+CREATE TABLE book_genres (
+    book_id INT,
+    genre_id INT,
+    PRIMARY KEY (book_id, genre_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id),
+    FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
+);
