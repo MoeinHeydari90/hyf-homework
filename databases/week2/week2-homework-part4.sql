@@ -51,3 +51,14 @@ CREATE TABLE book_genres (
     FOREIGN KEY (book_id) REFERENCES books(book_id),
     FOREIGN KEY (genre_id) REFERENCES genres(genre_id)
 );
+
+
+DROP TABLE IF EXISTS book_reservations;
+CREATE TABLE book_reservations (
+    book_id INT,
+    member_id INT,
+    reservation_date DATE NOT NULL,
+    PRIMARY KEY (book_id, member_id),
+    FOREIGN KEY (book_id) REFERENCES books(book_id),
+    FOREIGN KEY (member_id) REFERENCES members(member_id)
+);
