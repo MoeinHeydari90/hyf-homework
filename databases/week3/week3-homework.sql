@@ -1,5 +1,10 @@
 -- https://github.com/HackYourFuture-CPH/databases/blob/main/lesson3/README.md#homework
 
+
+CREATE DATABASE MealSharingDB;
+USE MealSharingDB;
+
+
 -- Create all the sql for creating this data model: https://dbdiagram.io/d/5f0460690425da461f045a29
 
 
@@ -8,7 +13,7 @@ CREATE TABLE Meal (
     title VARCHAR(255) NOT NULL,
     description TEXT,
     location VARCHAR(255),
-    when DATETIME,
+    `when` DATETIME,
     max_reservations INT,
     price DECIMAL(8, 2),
     created_date DATE
