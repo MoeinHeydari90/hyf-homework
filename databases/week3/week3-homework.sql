@@ -126,3 +126,35 @@ WHERE id = 2;
 -- Delete a reservation with any id, fx 1
 DELETE FROM Reservation
 WHERE id = 1;
+
+
+-- Queries to Review Table
+
+
+-- Get all reviews
+SELECT * FROM Review;
+
+
+-- Add a new review
+INSERT INTO Review (id, title, description, meal_id, stars, created_date) VALUES
+(6, 'Excellent Experience', 'The meal was fantastic, and the service was impeccable.', 3, 5, '2024-07-18');
+
+
+
+-- Get a review with any id, fx 1
+SELECT * FROM Review
+WHERE id = 1;
+
+
+-- Update a review with any id, fx 1. Update any attribute fx the title or multiple attributes
+UPDATE Review
+SET title = 'Fantastic Dining Experience',
+    description = 'The meal exceeded my expectations. The flavors were delightful, and the service was impeccable.'
+WHERE id = 1;
+
+
+-- Delete a review with any id, fx 1
+DELETE FROM Review
+WHERE id = 6;
+
+
