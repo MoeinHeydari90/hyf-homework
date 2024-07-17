@@ -70,7 +70,7 @@ INSERT INTO Review (id, title, description, meal_id, stars, created_date) VALUES
 (5, 'Exquisite French Cuisine', 'The French dishes were exquisite and well-prepared.', 5, 5, '2024-07-25');
 
 
--- Queries to Meal
+-- Queries to Meal Table
 
 
 -- Get all meals
@@ -89,11 +89,40 @@ WHERE id = 1;
 
 -- Update a meal with any id, fx 1. Update any attribute fx the title or multiple attributes
 UPDATE Meal
-SET title = 'Updated Italian Dinner',
-    description = 'An updated description for the delightful evening with Italian cuisine.'
+SET title = 'Osso Buco (Italian Dinner)',
+    description = 'Braised veal shanks with vegetables, white wine, and broth.'
 WHERE id = 1;
 
 
 -- Delete a meal with any id, fx 1
 DELETE FROM Meal
 WHERE id = 6;
+
+
+-- Queries to Reservation Table
+
+
+-- Get all reservations
+SELECT * FROM Reservation;
+
+
+-- Add a new reservation
+INSERT INTO Reservation (id, number_of_guests, meal_id, created_date, contact_phonenumber, contact_name, contact_email) VALUES
+(6, 3, 2, '2024-07-17', '6789012345', 'David Green', 'david.green@example.com');
+
+
+-- Get a reservation with any id, fx 1
+SELECT * FROM Reservation
+WHERE id = 4;
+
+
+-- Update a reservation with any id, fx 1. Update any attribute fx the title or multiple attributes
+UPDATE Reservation
+SET number_of_guests = 4,
+    contact_name = 'Alex Smith'
+WHERE id = 2;
+
+
+-- Delete a reservation with any id, fx 1
+DELETE FROM Reservation
+WHERE id = 1;
