@@ -68,3 +68,32 @@ INSERT INTO Review (id, title, description, meal_id, stars, created_date) VALUES
 (3, 'BBQ Heaven', 'The BBQ was out of this world!', 3, 5, '2024-07-23'),
 (4, 'Good Vegan Meal', 'The vegan meal was healthy and delicious.', 4, 4, '2024-07-24'),
 (5, 'Exquisite French Cuisine', 'The French dishes were exquisite and well-prepared.', 5, 5, '2024-07-25');
+
+
+-- Queries to Meal
+
+
+-- Get all meals
+SELECT * FROM Meal;
+
+
+-- Add a new meal
+INSERT INTO Meal (id, title, description, location, `when`, max_reservations, price, created_date) VALUES
+(6, 'Mexican Fiesta', 'A vibrant evening with Mexican food.', 'Roskilde', '2024-07-30 19:00:00', 20, 60.00, '2024-07-16');
+
+
+-- Get a meal with any id, fx 1
+SELECT * FROM Meal
+WHERE id = 1;
+
+
+-- Update a meal with any id, fx 1. Update any attribute fx the title or multiple attributes
+UPDATE Meal
+SET title = 'Updated Italian Dinner',
+    description = 'An updated description for the delightful evening with Italian cuisine.'
+WHERE id = 1;
+
+
+-- Delete a meal with any id, fx 1
+DELETE FROM Meal
+WHERE id = 6;
