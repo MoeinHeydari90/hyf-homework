@@ -158,3 +158,69 @@ DELETE FROM Review
 WHERE id = 6;
 
 
+-- Additional queries
+
+
+-- Get meals that has a price smaller than a specific price fx 90
+SELECT *
+FROM Meal
+WHERE price < 90;
+
+
+-- Get meals that still have available reservations
+SELECT *
+FROM Meal
+WHERE id IN (
+    SELECT meal_id
+    FROM Reservation
+    GROUP BY meal_id
+    HAVING COUNT(*) < max_reservations
+);
+
+
+-- Get meals that partially match a title. Rød grød med will match the meal with the title Rød grød med fløde
+SELECT *
+FROM Meal
+WHERE title LIKE 'Rød grød med%';
+
+
+-- Get meals that has been created between two dates
+SELECT *
+FROM Meal
+WHERE created_date BETWEEN '2024-01-01' AND '2024-07-30';
+
+
+-- Get only specific number of meals fx return only 5 meals
+SELECT *
+FROM Meal
+ORDER BY created_date DESC
+LIMIT 5;
+
+
+-- Get the meals that have good reviews
+SELECT *
+FROM Meal
+INNER JOIN (
+    SELECT meal_id, AVG(stars) AS average_rating
+    FROM Review
+    GROUP BY meal_id
+    HAVING AVG(stars) >= 4
+) AS ReviewSummary ON Meal.id = ReviewSummary.meal_id;
+
+
+-- Get reservations for a specific meal sorted by created_date
+SELECT *
+FROM Reservation
+WHERE meal_id = 2
+ORDER BY created_date;
+
+
+-- Sort all meals by average number of stars in the reviews
+SELECT *
+FROM Meal
+LEFT JOIN (
+    SELECT meal_id, AVG(stars) AS avg_stars
+    FROM Review
+    GROUP BY meal_id
+) AS avg_rating ON Meal.id = avg_rating.meal_id
+ORDER BY avg_rating.avg_stars DESC;
