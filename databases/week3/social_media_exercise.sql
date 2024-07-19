@@ -4,6 +4,7 @@
 CREATE DATABASE SocialMediaDB;
 USE SocialMediaDB;
 
+
 CREATE TABLE user (
     id INT AUTO_INCREMENT PRIMARY KEY,
     name VARCHAR(255) NOT NULL,
@@ -11,6 +12,7 @@ CREATE TABLE user (
     password VARCHAR(255) NOT NULL,
     registration_datetime DATETIME NOT NULL
 );
+
 
 CREATE TABLE post (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -21,6 +23,7 @@ CREATE TABLE post (
     author_id INT NOT NULL,
     FOREIGN KEY (author_id) REFERENCES user(id)
 );
+
 
 CREATE TABLE comment (
     id INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,4 +36,25 @@ CREATE TABLE comment (
     FOREIGN KEY (author_id) REFERENCES user(id),
     FOREIGN KEY (post_id) REFERENCES post(id),
     FOREIGN KEY (parent_comment_id) REFERENCES comment(id)
+);
+
+
+CREATE TABLE reaction_type (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) UNIQUE NOT NULL
+);
+
+
+CREATE TABLE reaction (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    reaction_type_id INT NOT NULL,
+    post_id INT,
+    comment_id INT,
+    reaction_datetime DATETIME NOT NULL,
+    FOREIGN KEY (user_id) REFERENCES user(id),
+    FOREIGN KEY (reaction_type_id) REFERENCES reaction_type(id),
+    FOREIGN KEY (post_id) REFERENCES post(id),
+    FOREIGN KEY (comment_id) REFERENCES comment(id),
+    UNIQUE(user_id, reaction_type_id, post_id, comment_id)
 );
