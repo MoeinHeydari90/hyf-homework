@@ -58,3 +58,13 @@ CREATE TABLE reaction (
     FOREIGN KEY (comment_id) REFERENCES comment(id),
     UNIQUE(user_id, reaction_type_id, post_id, comment_id)
 );
+
+
+CREATE TABLE friendship (
+    user1_id INT NOT NULL,
+    user2_id INT NOT NULL,
+    friendship_datetime DATETIME NOT NULL,
+    FOREIGN KEY (user1_id) REFERENCES user(id),
+    FOREIGN KEY (user2_id) REFERENCES user(id),
+    UNIQUE(user1_id, user2_id), -- To prevent duplicate friendships.
+);
