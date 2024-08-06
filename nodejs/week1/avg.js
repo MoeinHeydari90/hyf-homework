@@ -18,11 +18,17 @@ const server = http.createServer((req, res) => {
     const numbers = queryObject.numbers ? queryObject.numbers.split(",").map(Number) : [];
 
     // Check if there are no numbers or if any of the numbers are not valid
-    if (numbers.length === 0 || numbers.some(isNaN)) {
-        // Respond with a 400 Bad Request if the input is invalid
+    if (numbers.length === 0) {
+        // Respond with a 400 Bad Request if no numbers are provided
         res.writeHead(400, { "Content-Type": "text/plain" });
         res.end(
-            "Please provide a valid list of numbers as a query parameter, e.g., ?numbers=1,17,0.5"
+            "No numbers provided. Please provide a list of numbers as a query parameter, e.g., ?numbers=1,17,0.5"
+        );
+    } else if (numbers.some(isNaN)) {
+        // Respond with a 400 Bad Request if any of the provided values are not valid numbers
+        res.writeHead(400, { "Content-Type": "text/plain" });
+        res.end(
+            "Invalid input. Please provide a valid list of numbers as a query parameter, e.g., ?numbers=1,17,0.5"
         );
     } else {
         // Calculate the average of the numbers
