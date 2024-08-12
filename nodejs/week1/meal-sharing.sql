@@ -1,0 +1,3 @@
+CREATE DATABASE `meal-sharing`;
+
+SHOW DATABASES;
