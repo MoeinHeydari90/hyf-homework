@@ -1,8 +1,8 @@
 -- https://github.com/HackYourFuture-CPH/databases/blob/main/lesson3/README.md#homework
 
 
-CREATE DATABASE MealSharingDB;
-USE MealSharingDB;
+CREATE DATABASE `meal-sharing`;
+USE `meal-sharing`;
 
 
 -- Create all the sql for creating this data model: https://dbdiagram.io/d/5f0460690425da461f045a29
