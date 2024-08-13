@@ -36,6 +36,18 @@ app.get("/search", (req, res) => {
     res.json(filteredDocs);
 });
 
+// Define the GET /documents/:id endpoint
+app.get("/documents/:id", (req, res) => {
+    const { id } = req.params; // Extract the 'id' parameter from the request URL
+    const document = documents.find((doc) => doc.id == id); // Find the document with the matching ID
+
+    if (!document) {
+        return res.status(404).send("Document not found"); // If no document is found, return a 404 status
+    }
+
+    res.json(document); // If found, return the document as JSON
+});
+
 app.get("/", (req, res) => {
     res.send("This is a search engine");
 });
