@@ -18,21 +18,18 @@ try {
 
 // Define the GET /search endpoint
 app.get("/search", (req, res) => {
-    const { q } = req.query; // Get the 'q' query parameter from the request
+    const { q } = req.query;
 
     if (!q) {
-        // If 'q' is not provided, return all documents
-        return res.json(documents);
+        return res.json(documents); // Return all documents if no query is provided
     }
 
-    // If 'q' is provided, filter documents based on the query
     const filteredDocs = documents.filter((doc) =>
         Object.values(doc).some(
             (value) => value.toString().toLowerCase().includes(q.toLowerCase()) // Case-insensitive search
         )
     );
 
-    // Return the filtered documents
     res.json(filteredDocs);
 });
 
@@ -46,6 +43,40 @@ app.get("/documents/:id", (req, res) => {
     }
 
     res.json(document); // If found, return the document as JSON
+});
+
+// Define the POST /search endpoint
+app.post("/search", (req, res) => {
+    const { q } = req.query; // Extract the 'q' query parameter from the request URL
+    const { fields } = req.body; // Extract the 'fields' object from the request body
+
+    // Check if both q and fields are provided
+    if (q && fields) {
+        return res.status(400).send("Cannot provide both q and fields in the same request");
+    }
+
+    let filteredDocs = documents;
+
+    // Filter by 'q' if provided
+    if (q) {
+        filteredDocs = documents.filter((doc) =>
+            Object.values(doc).some(
+                (value) => value.toString().toLowerCase().includes(q.toLowerCase()) // Case-insensitive search
+            )
+        );
+    }
+
+    // Filter by 'fields' if provided
+    if (fields) {
+        filteredDocs = documents.filter((doc) =>
+            Object.entries(fields).every(
+                ([key, value]) =>
+                    doc[key] && doc[key].toString().toLowerCase() === value.toLowerCase()
+            )
+        );
+    }
+
+    res.json(filteredDocs);
 });
 
 app.get("/", (req, res) => {
