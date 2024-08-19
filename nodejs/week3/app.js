@@ -24,12 +24,16 @@ const contactsAPIRouter = express.Router();
 apiRouter.use("/contacts", contactsAPIRouter);
 
 contactsAPIRouter.get("/", async (req, res) => {
+    const validSortFields = ["first_name", "last_name", "email", "phone"];
     let query = knexInstance.select("*").from("contacts");
 
     if ("sort" in req.query) {
-        const orderBy = req.query.sort.toString();
-        if (orderBy.length > 0) {
-            query = query.orderByRaw(orderBy);
+        const [field, direction] = req.query.sort.split(" ");
+
+        if (validSortFields.includes(field) && ["ASC", "DESC"].includes(direction.toUpperCase())) {
+            query = query.orderBy(field, direction.toUpperCase());
+        } else {
+            return res.status(400).json({ error: "Invalid sort parameter" });
         }
     }
 
