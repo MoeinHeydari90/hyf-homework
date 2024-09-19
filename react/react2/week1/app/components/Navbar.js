@@ -28,6 +28,7 @@ const Navbar = () => {
         { label: "Mars Rover Photos", path: "/mars" },
         { label: "Blogs", path: "/blogs" },
         { label: "NASA Epic Image", path: "/epic" },
+        { label: "Sign up form", path: "/sign-up" },
     ];
 
     const handleDrawerToggle = () => {
